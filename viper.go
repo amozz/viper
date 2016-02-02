@@ -517,6 +517,8 @@ func (v *Viper) Get(key string) interface{} {
 		return cast.ToDuration(val)
 	case []string:
 		return cast.ToStringSlice(val)
+	case []int:
+		return cast.ToIntSlice(val)
 	}
 	return val
 }
@@ -574,6 +576,12 @@ func (v *Viper) GetDuration(key string) time.Duration {
 func GetStringSlice(key string) []string { return v.GetStringSlice(key) }
 func (v *Viper) GetStringSlice(key string) []string {
 	return cast.ToStringSlice(v.Get(key))
+}
+
+// Returns the value associated with the key as a slice of ints
+func GetIntSlice(key string) []int { return v.GetIntSlice(key) }
+func (v *Viper) GetIntSlice(key string) []int {
+	return cast.ToIntSlice(v.Get(key))
 }
 
 // Returns the value associated with the key as a map of interfaces
